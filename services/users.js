@@ -1,7 +1,13 @@
-const Users = require('../models/users');
+const User = require('../models/users');
+const Error = require('../utils/createErros');
 
 const create = async (user) => {
-  
+  const checkEmail = await User.findByEmail(user.email);
+  if (checkEmail) return Error.conflict('email já cadastrado');
+  return User.create(user);
 };
 
-module.exports = {};
+module.exports = {
+  getAll: User.getAll,
+  create,
+};
