@@ -1,8 +1,19 @@
 const connection = require('./connection');
+const { ObjectId } = require('mongodb');
 
 const getAll = async () => {
   const db = await connection();
   return db.collection('users').find().toArray();
+};
+
+const findByEmail = async (email) => {
+  const db = await connection();
+  return db.collection('users').findOne({ email });
+};
+
+const findById = async (id) => {
+  const db = await connection();
+  return db.collection('users').findOne(ObjectId(id));
 };
 
 const create = async (user) => {
@@ -11,13 +22,21 @@ const create = async (user) => {
   return user;
 };
 
-const findByEmail = async (email) => {
+const update = async (id, updates) => {
   const db = await connection();
-  return db.collection('users').findOne({ email });
+  const { matchedCount } = await db
+    .collection('users')
+    .updateOne(ObjectId(id), { $set: updates });
+  if (matchedCount) {
+    const user = await findById(id);
+    return user;
+  }
 };
 
 module.exports = {
   getAll,
   create,
   findByEmail,
+  findById,
+  update,
 };
