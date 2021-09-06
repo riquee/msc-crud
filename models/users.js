@@ -8,9 +8,7 @@ const getAll = async () => {
 const create = async (user) => {
   const db = await connection();
   await db.collection('users').insertOne(user);
-  return {
-    ...user
-  }
+  return user;
 };
 
 const findByEmail = async (email) => {

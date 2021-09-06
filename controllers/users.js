@@ -13,8 +13,8 @@ users.post(
   '/',
   validateUser,
   rescue(async (req, res, next) => {
-    const { username, password, email, age } = req.body;
-    const user = await User.create({ username, password, email, age });
+    const { name, password, email, age } = req.body;
+    const user = await User.create({ name, password, email, age });
     if (user.isError) next(user);
     res.status(201).json( user );
   }),
