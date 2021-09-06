@@ -34,4 +34,14 @@ users.put(
   }),
 );
 
+users.delete(
+  '/:id',
+  rescue(async (req, res, next) => {
+    const { id } = req.params;
+    const user = await User.excluse(id);
+    if (user.isError) next(user);
+    res.status(201).json({ message: 'usuario deletado com sucesso'});
+  }),
+);
+
 module.exports = users;

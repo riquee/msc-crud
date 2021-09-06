@@ -26,11 +26,17 @@ const update = async (id, updates) => {
   const db = await connection();
   const { matchedCount } = await db
     .collection('users')
-    .updateOne(ObjectId(id), { $set: updates });
+    .updateOne({ _id: ObjectId(id) }, { $set: updates });
   if (matchedCount) {
     const user = await findById(id);
     return user;
   }
+};
+
+const excluse = async (id) => {
+  const db = await connection();
+  const { deletedCount } = await db.collection('users').deleteOne({ _id: ObjectId(id) });
+  return deletedCount
 };
 
 module.exports = {
@@ -39,4 +45,5 @@ module.exports = {
   findByEmail,
   findById,
   update,
+  excluse,
 };

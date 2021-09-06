@@ -2,6 +2,7 @@ const INTERNAL_ERROR = 500;
 const BAD_REQUEST = 400;
 
 module.exports = (err, req, res, next) => {
+  console.log(err)
   if (err.isJoi) {
     return res.status(BAD_REQUEST).json({
       message: err.details[0].message,
