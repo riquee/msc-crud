@@ -1,0 +1,29 @@
+{
+  "name": "msc-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riquee/msc-crud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riquee/msc-crud/issues"
+  },
+  "homepage": "https://github.com/riquee/msc-crud#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-rescue": "^1.1.31",
+    "joi": "^17.4.2",
+    "mongodb": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
