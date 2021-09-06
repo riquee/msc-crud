@@ -16,7 +16,7 @@ users.post(
     const { username, password, email, age } = req.body;
     const user = await User.create({ username, password, email, age });
     if (user.isError) next(user);
-    res.status(201).json({ user });
+    res.status(201).json( user );
   }),
 );
 

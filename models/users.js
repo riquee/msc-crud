@@ -7,7 +7,10 @@ const getAll = async () => {
 
 const create = async (user) => {
   const db = await connection();
-  return db.collection('users').insertOne(user);
+  await db.collection('users').insertOne(user);
+  return {
+    ...user
+  }
 };
 
 const findByEmail = async (email) => {
